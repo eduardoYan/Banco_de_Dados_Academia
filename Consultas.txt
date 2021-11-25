@@ -1,0 +1,38 @@
+SELECT 
+  aluno.peso, 
+  pessoa.nome, 
+  aluno.massa_esqueletica, 
+  aluno.gordura_corporal, 
+  aluno.massa_livre_de_gordura, 
+  aluno.percentual_de_gordura, 
+  circunferencias.ombro, 
+  circunferencias.peitoral, 
+  circunferencias.abdome, 
+  circunferencias.cintura, 
+  circunferencias.quadril
+FROM 
+  public.aluno 
+JOIN public.circunferencias ON aluno.id_aluno = circunferencias.dono_medidas 
+JOIN public.pessoa ON aluno.id_aluno = pessoa.id_pessoa;
+  
+
+SELECT 
+  pessoa.nome, 
+  plano.descricao, 
+  pagamento.data, 
+  plano.valor
+FROM 
+  public.aluno
+JOIN public.pagamento ON pagamento.id_aluno = aluno.id_aluno 
+ JOIN  public.pessoa ON pessoa.id_pessoa = aluno.id_aluno
+ JOIN public.plano ON aluno.plano_aluno = plano.id_plano;
+
+SELECT 
+  pessoa.nome, 
+  produtos.valor, 
+  produtos.nome, 
+  compra.forma_pagamento
+FROM 
+ public.pessoa 
+JOIN public.compra ON pessoa.id_pessoa = compra.id_comprador 
+JOIN public.produtos ON produtos.id_produto = compra.id_produto_vendido;
